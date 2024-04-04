@@ -4,7 +4,6 @@
     systemPackages = with pkgs; [
       bat
       bottom
-      eza
       fd
       file
       fzf
@@ -16,7 +15,6 @@
       neofetch
       nushell
       tree
-      yazi
     ];
 
     variables = {
