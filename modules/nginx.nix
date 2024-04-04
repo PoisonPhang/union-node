@@ -8,7 +8,7 @@
     recommendedTlsSettings = true;
     virtualHosts =
       let
-        domain = "testnet.poisonphang.com";
+        domain = "testnet.val.poisonphang.com";
 
         explorer = pkgs.mkYarnPackage {
           src = pkgs.fetchFromGitHub {
@@ -21,7 +21,7 @@
             cp -r $node_modules node_modules
             chmod +w node_modules
             substituteInPlace src/chains/testnet/union.json \
-              --replace 0xc0dejug.uno testnet.poisonphang.com
+              --replace 0xc0dejug.uno testnet.val.poisonphang.com
 
           '';
           buildPhase = ''

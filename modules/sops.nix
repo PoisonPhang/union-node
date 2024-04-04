@@ -10,7 +10,7 @@ sops = {
     datadog_api_key = {
       restartUnits = [ "datadog-agent.service" ];
       path = "/etc/datadog-agent/datadog_api.key";
-      sopsFile = ./secrets/datadog.yaml;
+      sopsFile = ../secrets/datadog.yaml;
       mode = "0440";
       owner = "datadog";
     };

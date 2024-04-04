@@ -37,6 +37,14 @@
                 acceptTerms = true;
                 defaults.email = "connor@union.build";
               };
+
+              imports = [
+                ./modules/datadog.nix
+                ./modules/environment.nix
+                ./modules/nginx.nix
+                ./modules/nix.nix
+                ./modules/sops.nix
+              ];
             }
           ];
         };
