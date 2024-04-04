@@ -41,7 +41,44 @@
               imports = [
                 ./modules/datadog.nix
                 ./modules/environment.nix
-                ./modules/nginx.nix
+                ./modules/nginx-val.nix
+                ./modules/nix.nix
+                ./modules/sops.nix
+              ];
+            }
+          ];
+        };
+      nixosConfigurations.poisonphang-seed =
+        let
+          system = "x86_64-linux";
+        in
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            union.nixosModules.unionvisor
+            sops-nix.nixosModules.sops
+            "${nixpkgs}/nixos/modules/virtualisation/openstack-config.nix"
+            {
+              system.stateVersion = "23.11";
+
+              networking.firewall.allowedTCPPorts = [ 80 443 26656 26657 ];
+
+              services.unionvisor = {
+                enable = true;
+                moniker = "poisonphang-seed";
+                network = "union-testnet-7";
+                bundle = union.packages.${system}.bundle-testnet-7;
+              };
+
+              security.acme = {
+                acceptTerms = true;
+                defaults.email = "connor@union.build";
+              };
+
+              imports = [
+                ./modules/datadog.nix
+                ./modules/environment.nix
+                ./modules/nginx-seed.nix
                 ./modules/nix.nix
                 ./modules/sops.nix
               ];

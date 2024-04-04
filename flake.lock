@@ -27,16 +27,16 @@
     "biome": {
       "flake": false,
       "locked": {
-        "lastModified": 1709906449,
-        "narHash": "sha256-jiVPFHde2votioUn0n9RyBgyOBpATcTstcQAvWHItyo=",
+        "lastModified": 1711385275,
+        "narHash": "sha256-DooUOp+fr5oOrx04SLlTGro8xc2LieVPNtdvDyTLL/s=",
         "owner": "biomejs",
         "repo": "biome",
-        "rev": "560628b380b0b1f61303c8e5ca2175d3b4794089",
+        "rev": "bb59e3c31240636acff272e071612d58e3c3901c",
         "type": "github"
       },
       "original": {
         "owner": "biomejs",
-        "ref": "cli/v1.6.0",
+        "ref": "cli/v1.6.3",
         "repo": "biome",
         "type": "github"
       }
@@ -613,11 +613,11 @@
         "wasmvm-1_5_0": "wasmvm-1_5_0"
       },
       "locked": {
-        "lastModified": 1712071417,
-        "narHash": "sha256-OwqDm9Yud/EZbZBFSNWfDjwSX6xggVUPsKl8hoIJdv0=",
+        "lastModified": 1712245103,
+        "narHash": "sha256-K9JgiLXWmrF7usvDe4+oqNyL/9XnGTBUdgBQJ031oBM=",
         "owner": "unionlabs",
         "repo": "union",
-        "rev": "2fd6d2a6e6946cd94f134ed1494c3735a534b89a",
+        "rev": "f74900a976bc71eaacaac8aedb9d76d0d3d83b8d",
         "type": "github"
       },
       "original": {

@@ -1,14 +1,17 @@
 keys:
   - &admin_poisonphang b57a443139b74db6150e9b490ab4dacfbb1e58aa
   - &server_testnet-val-poisonphang e04f93ce9bb46fe3972cc2a85b2b8890cbb6e7cc
+  - &server_testnet-seed-poisonphang 8e887e5aee83bdf8b48a7e7c6e71991ac8927400
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
     - pgp:
       - *admin_poisonphang
       - *server_testnet-val-poisonphang
+      - *server_testnet-seed-poisonphang
   - path_regex: secrets/beefy-sausage/[^/]+\.(yaml|json|env|ini)$
     key_groups:
     - pgp:
       - *admin_poisonphang
       - *server_testnet-val-poisonphang
+      - *server_testnet-seed-poisonphang
