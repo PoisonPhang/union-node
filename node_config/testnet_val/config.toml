@@ -206,7 +206,7 @@ laddr = "tcp://0.0.0.0:26656"
 external_address = "testnet.val.poisonphang.com:443"
 
 # Comma separated list of seed nodes to connect to
-seeds="2f731af0b27c16fc3c71341fab88903544525090@testnet.seed.poisonphang.com:26656"
+seeds="c2bf0d5b2ad3a1df0f4e9cc32debffa239c0af90@testnet.seed.poisonphang.com:26656"
 
 # Comma separated list of nodes to keep persistent connections to
 persistent_peers = ""

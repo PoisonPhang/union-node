@@ -9,7 +9,7 @@
 
     union.url = "github:unionlabs/union/release-v0.20.0";
   };
-  outputs = {nixpkgs, union, sops-nix, config, ... }:
+  outputs = { self, nixpkgs, union, sops-nix }@inputs:
     {
       nixosConfigurations.poisonphang-val =
         let
@@ -22,34 +22,27 @@
             sops-nix.nixosModules.sops
             "${nixpkgs}/nixos/modules/virtualisation/openstack-config.nix"
             {
-              system.stateVersion = "23.11";
+              config = {
+                system.stateVersion = "23.11";
 
-              networking.firewall.allowedTCPPorts = [ 80 443 26656 26657 ];
+                security.acme = {
+                  acceptTerms = true;
+                  defaults.email = "connor@union.build";
+                };
 
-              services.unionvisor = {
-                enable = true;
-                moniker = "poisonphang-val";
-                network = "union-testnet-7";
-                bundle = union.packages.${system}.bundle-testnet-7;
-                priv-validator-key-json = config.sops.secrets.val_priv_validator_key.path;
-                app-toml = ./node_config/testnet_val/app.toml;
-                client-toml = ./node_config/testnet_val/client.toml;
-                config-toml = ./node_config/testnet_val/config.toml;
+                networking.firewall.allowedTCPPorts = [ 80 443 26656 26657 ];
+
+                _module.args = {
+                  inherit inputs;
+                };
               };
-
-              security.acme = {
-                acceptTerms = true;
-                defaults.email = "connor@union.build";
-              };
-
-              imports = [
-                ./modules/datadog.nix
-                ./modules/environment.nix
-                ./modules/nginx-val.nix
-                ./modules/nix.nix
-                ./modules/sops.nix
-              ];
             }
+            ./modules/datadog.nix
+            ./modules/environment.nix
+            ./modules/nginx-val.nix
+            ./modules/nix.nix
+            ./modules/sops.nix
+            ./modules/unionvisor_val.nix
           ];
         };
       nixosConfigurations.poisonphang-seed =
@@ -63,34 +56,26 @@
             sops-nix.nixosModules.sops
             "${nixpkgs}/nixos/modules/virtualisation/openstack-config.nix"
             {
-              system.stateVersion = "23.11";
+              config = {
+                system.stateVersion = "23.11";
+                security.acme = {
+                  acceptTerms = true;
+                  defaults.email = "connor@union.build";
+                };
 
-              networking.firewall.allowedTCPPorts = [ 80 443 26656 26657 ];
+                networking.firewall.allowedTCPPorts = [ 80 443 26656 26657 ];
 
-              services.unionvisor = {
-                enable = true;
-                moniker = "poisonphang-seed";
-                network = "union-testnet-7";
-                bundle = union.packages.${system}.bundle-testnet-7;
-                priv-validator-key-json = config.sops.secrets.seed_priv_validator_key.path;
-                app-toml = ./node_config/testnet_seed/app.toml;
-                client-toml = ./node_config/testnet_seed/client.toml;
-                config-toml = ./node_config/testnet_seed/config.toml;
+                _module.args = {
+                  inherit inputs;
+                };
               };
-
-              security.acme = {
-                acceptTerms = true;
-                defaults.email = "connor@union.build";
-              };
-
-              imports = [
-                ./modules/datadog.nix
-                ./modules/environment.nix
-                ./modules/nginx-seed.nix
-                ./modules/nix.nix
-                ./modules/sops.nix
-              ];
             }
+            ./modules/datadog.nix
+            ./modules/environment.nix
+            ./modules/nginx-seed.nix
+            ./modules/nix.nix
+            ./modules/sops.nix
+            ./modules/unionvisor_seed.nix
           ];
         };
 

@@ -16,13 +16,23 @@ sops = {
     };
     seed_priv_validator_key = {
       restartUnits = [ "unionvisor.service" ];
-      format = "json";
-      sopsFile = ./secrets/seed_priv_validator_key.json;
+      format = "binary";
+      sopsFile = ../secrets/seed_priv_validator_key.json;
     };
     val_priv_validator_key = {
       restartUnits = [ "unionvisor.service" ];
-      format = "json";
-      sopsFile = ./secrets/val_priv_validator_key.json;
+      format = "binary";
+      sopsFile = ../secrets/val_priv_validator_key.json;
+    };
+    seed_node_key = {
+      restartUnits = [ "unionvisor.service" ];
+      format = "binary";
+      sopsFile = ../secrets/seed_node_key.json;
+    };
+    val_node_key = {
+      restartUnits = [ "unionvisor.service" ];
+      format = "binary";
+      sopsFile = ../secrets/val_node_key.json;
     };
   };
 };
