@@ -16,12 +16,12 @@ sops = {
     };
     seed_priv_validator_key = {
       restartUnits = [ "unionvisor.service" ];
-      format = "binary";
+      format = "json";
       sopsFile = ./secrets/seed_priv_validator_key.json;
     };
-    seed_priv_validator_key = {
+    val_priv_validator_key = {
       restartUnits = [ "unionvisor.service" ];
-      format = "binary";
+      format = "json";
       sopsFile = ./secrets/val_priv_validator_key.json;
     };
   };

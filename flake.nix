@@ -9,7 +9,7 @@
 
     union.url = "github:unionlabs/union/release-v0.20.0";
   };
-  outputs = {nixpkgs, union, sops-nix, ... }:
+  outputs = {nixpkgs, union, sops-nix, config, ... }:
     {
       nixosConfigurations.poisonphang-val =
         let
@@ -31,6 +31,10 @@
                 moniker = "poisonphang-val";
                 network = "union-testnet-7";
                 bundle = union.packages.${system}.bundle-testnet-7;
+                priv-validator-key-json = config.sops.secrets.val_priv_validator_key.path;
+                app-toml = ./node_config/testnet_val/app.toml;
+                client-toml = ./node_config/testnet_val/client.toml;
+                config-toml = ./node_config/testnet_val/config.toml;
               };
 
               security.acme = {
@@ -68,6 +72,10 @@
                 moniker = "poisonphang-seed";
                 network = "union-testnet-7";
                 bundle = union.packages.${system}.bundle-testnet-7;
+                priv-validator-key-json = config.sops.secrets.seed_priv_validator_key.path;
+                app-toml = ./node_config/testnet_seed/app.toml;
+                client-toml = ./node_config/testnet_seed/client.toml;
+                config-toml = ./node_config/testnet_seed/config.toml;
               };
 
               security.acme = {
