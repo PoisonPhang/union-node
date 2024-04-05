@@ -14,12 +14,16 @@ sops = {
       mode = "0440";
       owner = "datadog";
     };
-    # priv_validator_key = {
-    #   restartUnits = [ "unionvisor.service" ];
-    #   format = "binary";
-    #   sopsFile = ./secrets/wakey-rpc/priv_validator_key.json;
-    #   path = "/var/lib/unionvisor/home/config/priv_validator_key.json";
-    # };
+    seed_priv_validator_key = {
+      restartUnits = [ "unionvisor.service" ];
+      format = "binary";
+      sopsFile = ./secrets/seed_priv_validator_key.json;
+    };
+    seed_priv_validator_key = {
+      restartUnits = [ "unionvisor.service" ];
+      format = "binary";
+      sopsFile = ./secrets/val_priv_validator_key.json;
+    };
   };
 };
 }
