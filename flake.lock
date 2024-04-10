@@ -412,11 +412,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1711819797,
-        "narHash": "sha256-tNeB6emxj74Y6ctwmsjtMlzUMn458sBmwnD35U5KIM4=",
+        "lastModified": 1712437997,
+        "narHash": "sha256-g0whLLwRvgO2FsyhY8fNk+TWenS3jg5UdlWL4uqgFeo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "2b4e3ca0091049c6fbb4908c66b05b77eaef9f0c",
+        "rev": "e38d7cb66ea4f7a0eb6681920615dfcc30fc2920",
         "type": "github"
       },
       "original": {
@@ -455,6 +455,23 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "75a5ebf473cd60148ba9aec0d219f72e5cf52519",
+        "type": "github"
+      }
+    },
+    "osmosis": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1712018893,
+        "narHash": "sha256-u/1/aMEPt78is4G7/pkjttDLb1IGw3jMP2MW518lLkM=",
+        "owner": "osmosis-labs",
+        "repo": "osmosis",
+        "rev": "7892e2f9e9528bc547c54db2b43cd01eda6a9bc4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "osmosis-labs",
+        "ref": "v24.0.0-rc0",
+        "repo": "osmosis",
         "type": "github"
       }
     },
@@ -512,11 +529,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1711855048,
-        "narHash": "sha256-HxegAPnQJSC4cbEbF4Iq3YTlFHZKLiNTk8147EbLdGg=",
+        "lastModified": 1712617241,
+        "narHash": "sha256-a4hbls4vlLRMciv62YrYT/Xs/3Cubce8WFHPUDWwzf8=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "99b1e37f9fc0960d064a7862eb7adfb92e64fa10",
+        "rev": "538c114cfdf1f0458f507087b1dcf018ce1c0c4c",
         "type": "github"
       },
       "original": {
@@ -528,17 +545,17 @@
     "stargaze": {
       "flake": false,
       "locked": {
-        "lastModified": 1707839780,
-        "narHash": "sha256-DRzXjx/L6UCtIgvVlIi9/0DF+dltk1aypFHtSZ5EZcc=",
-        "ref": "feature/sdk-v050",
-        "rev": "2f4915b8408f37d6d2e94f87837828094df4f08d",
-        "revCount": 1460,
+        "lastModified": 1712533498,
+        "narHash": "sha256-lt5+KTTieUbel6cBPeyXAVTPYj2u8WWCN3NCBt2lU/0=",
+        "ref": "main",
+        "rev": "2f2d5332d152d5cd7d89860962017584670d9d1e",
+        "revCount": 1569,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/public-awesome/stargaze"
       },
       "original": {
-        "ref": "feature/sdk-v050",
+        "ref": "main",
         "submodules": true,
         "type": "git",
         "url": "https://github.com/public-awesome/stargaze"
@@ -602,27 +619,29 @@
         "nixpkgs-go": "nixpkgs-go",
         "nixpkgs-solc": "nixpkgs-solc",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "osmosis": "osmosis",
         "public-awesome-launchpad": "public-awesome-launchpad",
         "rust-overlay": "rust-overlay",
         "stargaze": "stargaze",
         "treefmt-nix": "treefmt-nix",
         "v0_19_0": "v0_19_0",
         "v0_20_0": "v0_20_0",
+        "v0_21_0": "v0_21_0",
         "wasmd": "wasmd",
         "wasmvm": "wasmvm",
         "wasmvm-1_5_0": "wasmvm-1_5_0"
       },
       "locked": {
-        "lastModified": 1712323633,
-        "narHash": "sha256-wNhlEkAhq39WlOnlS6wUzR7T9VG9AD+uMKWaVVGYe/c=",
+        "lastModified": 1712684484,
+        "narHash": "sha256-YlKzcmBqt9kanjJRYJY4Z8//1MHL4BiUJafR89RH0Ow=",
         "owner": "unionlabs",
         "repo": "union",
-        "rev": "e15cb300f11e0571164ea5e4fe56ee6844724008",
+        "rev": "bed32d0cb25e073ebae37018c6c2d510651855e0",
         "type": "github"
       },
       "original": {
         "owner": "unionlabs",
-        "ref": "release-v0.20.0",
+        "ref": "release-v0.21.0",
         "repo": "union",
         "type": "github"
       }
@@ -647,16 +666,33 @@
     "v0_20_0": {
       "flake": false,
       "locked": {
-        "lastModified": 1712014437,
-        "narHash": "sha256-6twEI94wgcDZjk4h0y9sSum52PEz35tjakGUSWTRt+U=",
+        "lastModified": 1712323633,
+        "narHash": "sha256-wNhlEkAhq39WlOnlS6wUzR7T9VG9AD+uMKWaVVGYe/c=",
         "owner": "unionlabs",
         "repo": "union",
-        "rev": "729d68570ca5ed6e9a5dcbc270908bc22e3dfe1d",
+        "rev": "e15cb300f11e0571164ea5e4fe56ee6844724008",
         "type": "github"
       },
       "original": {
         "owner": "unionlabs",
         "ref": "release-v0.20.0",
+        "repo": "union",
+        "type": "github"
+      }
+    },
+    "v0_21_0": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1712676277,
+        "narHash": "sha256-1eGLpjn74VwCsOMvDAI/n9N6/vaMLKrr1Ws8G0Yqf7o=",
+        "owner": "unionlabs",
+        "repo": "union",
+        "rev": "5651650302f5d09987f2524b686ac55b8839d243",
+        "type": "github"
+      },
+      "original": {
+        "owner": "unionlabs",
+        "ref": "release-v0.21.0",
         "repo": "union",
         "type": "github"
       }
