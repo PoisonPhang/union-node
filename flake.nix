@@ -7,7 +7,7 @@
       inputs.nixpkgs.follows = "nixpkgs"; 
     };
 
-    union.url = "github:unionlabs/union/release-v0.21.0";
+    union.url = "github:unionlabs/union/main";
   };
   outputs = { self, nixpkgs, union, sops-nix }@inputs:
     {
