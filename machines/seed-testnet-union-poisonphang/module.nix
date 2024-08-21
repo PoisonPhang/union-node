@@ -11,7 +11,7 @@
     ../../modules/sops.nix
     ../../modules/nginx-seed.nix
     ../../modules/unionvisor-seed.nix
-    ];
+  ];
   _module.args = {
     checks = {
       # Datadog does not handle Hetzner: https://github.com/DataDog/datadog-agent/issues/20369
