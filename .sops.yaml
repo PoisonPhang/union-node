@@ -1,7 +1,7 @@
 keys:
   - &admin_poisonphang b57a443139b74db6150e9b490ab4dacfbb1e58aa
-  - &server_testnet-val-poisonphang e04f93ce9bb46fe3972cc2a85b2b8890cbb6e7cc
-  - &server_testnet-seed-poisonphang 8e887e5aee83bdf8b48a7e7c6e71991ac8927400
+  - &server_testnet-val-poisonphang 4e6f79cc930e5ad5b97b91529b0b50f8ffb4fb34
+  - &server_testnet-seed-poisonphang 353ab4b81cfde25a378e1947a7327fbf58bc3e7f
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini|key)$
     key_groups:
