@@ -1,10 +1,9 @@
-{ pkgs, checks, ... }:
+{ checks, ... }:
 {
   users.users.datadog.extraGroups = [ "systemd-journal" ];
 
   services.datadog-agent = {
     inherit checks;
-    package = pkgs.datadog-agent.override { buildGoModule = pkgs.buildGo121Module; };
     enable = true;
     apiKeyFile = "/etc/datadog-agent/datadog_api.key";
     enableLiveProcessCollection = true;
