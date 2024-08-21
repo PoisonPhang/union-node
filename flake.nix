@@ -1,84 +1,100 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05-small";
+    union.url = "github:unionlabs/union/main";
+    unionvisor.url = "github:unionlabs/union/da48c9b9f180d1dead43af9ee09bdc951db07407";
+    flake-utils.url = "github:numtide/flake-utils";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs"; 
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    union.url = "github:unionlabs/union/main";
   };
-  outputs = { self, nixpkgs, union, sops-nix }@inputs:
-    {
-      nixosConfigurations.poisonphang-val =
-        let
-          system = "x86_64-linux";
-        in
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            union.nixosModules.unionvisor
-            sops-nix.nixosModules.sops
-            "${nixpkgs}/nixos/modules/virtualisation/openstack-config.nix"
-            {
-              config = {
-                system.stateVersion = "23.11";
-
-                security.acme = {
-                  acceptTerms = true;
-                  defaults.email = "connor@union.build";
+  outputs =
+    inputs@{ self
+    , nixpkgs
+    , union
+    , sops-nix
+    , flake-utils
+    , flake-parts
+    , treefmt-nix
+    , ...
+    }:
+    let
+      commonDependencies = systemPkgs: with systemPkgs; [
+        just
+        direnv
+        grpcurl
+      ] ++ (with (import nixpkgs-unstable { inherit (systemPkgs) system; }); [
+        nodejs
+        nodePackages.pnpm
+      ]);
+    in
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+      imports = [
+        inputs.treefmt-nix.flakeModule
+      ];
+      flake = {
+        nixosConfigurations =
+          let
+            mkSystem = { system, module, overlays ? [ ], ... }:
+              let
+                systemPkgs = import nixpkgs {
+                  inherit system overlays;
+                  config = {
+                    allowUnfree = true;
+                    extra-substituters = [ "https://union.cachix.org" "https://cache.garnix.io" ];
+                    extra-trusted-public-keys =
+                      [ "union.cachix.org-1:TV9o8jexzNVbM1VNBOq9fu8NK+hL6ZhOyOh0quATy+M=" "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" ];
+                  };
                 };
-
-                networking.firewall.allowedTCPPorts = [ 80 443 26656 26657 ];
-
-                _module.args = {
+              in
+              nixpkgs.lib.nixosSystem {
+                inherit system;
+                specialArgs = {
                   inherit inputs;
                 };
+                modules = [
+                  module
+                  ({ pkgs, ... }: {
+                    environment.systemPackages = commonDependencies pkgs;
+                  })
+                ];
+                pkgs = systemPkgs;
               };
-            }
-            ./modules/datadog.nix
-            ./modules/environment.nix
-            ./modules/nginx-val.nix
-            ./modules/nix.nix
-            ./modules/sops.nix
-            ./modules/unionvisor_val.nix
-          ];
+          in
+          {
+            poisonphang-val = mkSystem {
+              system = "x86_64-linux";
+              module = ./machines/val-testnet-union-poisonphang/module.nix;
+            };
+            poisonphang-seed = mkSystem {
+              system = "x86_64-linux";
+              module = ./machines/seed-testnet-union-poisonphang/module.nix;
+            };
+          };
+      };
+      perSystem = { self', system, lib, config, pkgs, ... }:
+        {
+          _module.args.pkgs = import self.inputs.nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
+          treefmt.config = {
+            projectRootFile = "flake.nix";
+            programs = {
+              nixpkgs-fmt.enable = true;
+            };
+          };
         };
-      nixosConfigurations.poisonphang-seed =
-        let
-          system = "x86_64-linux";
-        in
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            union.nixosModules.unionvisor
-            sops-nix.nixosModules.sops
-            "${nixpkgs}/nixos/modules/virtualisation/openstack-config.nix"
-            {
-              config = {
-                system.stateVersion = "23.11";
-                security.acme = {
-                  acceptTerms = true;
-                  defaults.email = "connor@union.build";
-                };
-
-                networking.firewall.allowedTCPPorts = [ 80 443 26656 26657 ];
-
-                _module.args = {
-                  inherit inputs;
-                };
-              };
-            }
-            ./modules/datadog.nix
-            ./modules/environment.nix
-            ./modules/nginx-seed.nix
-            ./modules/nix.nix
-            ./modules/sops.nix
-            ./modules/unionvisor_seed.nix
-          ];
-        };
-
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
     };
+  nixConfig = {
+    extra-substituters = [ "https://union.cachix.org" "https://cache.garnix.io" ];
+    extra-trusted-public-keys =
+      [ "union.cachix.org-1:TV9o8jexzNVbM1VNBOq9fu8NK+hL6ZhOyOh0quATy+M=" "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" ];
+    accept-flake-config = true;
+  };
 }

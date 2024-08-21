@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   services.nginx = {
     enable = true;
@@ -9,31 +9,6 @@
     virtualHosts =
       let
         domain = "testnet.val.poisonphang.com";
-
-        explorer = pkgs.mkYarnPackage {
-          src = pkgs.fetchFromGitHub {
-            owner = "hussein-aitlahcen";
-            repo = "explorer";
-            rev = "b4c23b94fe3245dddf0185e54b39dbb97117efa6";
-            hash = "sha256-9S4XS6f7CliujM4AKq/AkII9wxI/ANsGrHd5GqXTUxE=";
-          };
-          configurePhase = ''
-            cp -r $node_modules node_modules
-            chmod +w node_modules
-            substituteInPlace src/chains/testnet/union.json \
-              --replace 0xc0dejug.uno ${domain}
-
-          '';
-          buildPhase = ''
-            export HOME=$(mktemp -d)
-            yarn --ignore-engine --offline build
-          '';
-          installPhase = ''
-            mkdir -p $out
-            mv dist/* $out/
-          '';
-          distPhase = "true";
-        };
 
         redirect = subdomain: port: {
           "${subdomain}.${domain}" = {
@@ -78,19 +53,6 @@
       redirect "rpc" 26657
       // redirect "api" 1317
       // redirectGrpc "grpc" 9090
-      // redirect "grpc-web" 9091
-      // {
-        "${domain}" = {
-          enableACME = true;
-          forceSSL = true;
-          default = true;
-          root = "${explorer}";
-          locations."/" = {
-            extraConfig = ''
-              try_files $uri /index.html;
-            '';
-          };
-        };
-      };
+      // redirect "grpc-web" 9091;
   };
 }

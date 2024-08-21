@@ -1,0 +1,24 @@
+{
+    "chain_name": "union",
+    "api": [
+        "https://api.testnet.seed.poisonphang.com"
+    ],
+    "rpc": [
+        "https://rpc.testnet.seed.poisonphang.com"
+    ],
+    "sdk_version": "0.50.5",
+    "addr_prefix": "union",
+    "min_tx_fee": "0",
+    "coin_type": "1337",
+    "logo": "",
+    "assets": [
+        {
+            "symbol": "UNO",
+            "base": "muno",
+            "exponent": 6,
+            "coingecko_id": "uno",
+            "logo": "https://raw.githubusercontent.com/Agoric/agoric-sdk/master/packages/wallet/ui/public/tokens/BLD.svg"
+        }
+    ]
+}
+

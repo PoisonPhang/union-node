@@ -20,9 +20,9 @@
           configurePhase = ''
             cp -r $node_modules node_modules
             chmod +w node_modules
-            substituteInPlace src/chains/testnet/union.json \
-              --replace 0xc0dejug.uno ${domain}
-
+            rm src/chains/mainnet/union.json
+            rm src/chains/testnet/union.json
+            cp ${../pingpub-chain.json} src/chains/mainnet/union.json
           '';
           buildPhase = ''
             export HOME=$(mktemp -d)
