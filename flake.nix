@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05-small";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     union.url = "github:unionlabs/union/main";
     unionvisor.url = "github:unionlabs/union/da48c9b9f180d1dead43af9ee09bdc951db07407";
     flake-utils.url = "github:numtide/flake-utils";
@@ -15,6 +16,7 @@
   outputs =
     inputs@{ self
     , nixpkgs
+    , nixpkgs-unstable
     , union
     , sops-nix
     , flake-utils
