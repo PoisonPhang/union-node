@@ -2,8 +2,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05-small";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    union.url = "github:unionlabs/union/main";
-    unionvisor.url = "github:unionlabs/union/da48c9b9f180d1dead43af9ee09bdc951db07407";
+    union.url = "github:unionlabs/union/create-bunlde-testnet-9";
+    unionvisor.url = "github:unionlabs/union/create-bunlde-testnet-9";
     flake-utils.url = "github:numtide/flake-utils";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     flake-parts.url = "github:hercules-ci/flake-parts";

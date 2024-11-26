@@ -206,10 +206,10 @@ laddr = "tcp://0.0.0.0:26656"
 external_address = "testnet.val.poisonphang.com:443"
 
 # Comma separated list of seed nodes to connect to
-seeds="c2bf0d5b2ad3a1df0f4e9cc32debffa239c0af90@testnet.seed.poisonphang.com:26656,ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:24656"
+seeds=""
 
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = ""
+persistent_peers = "c51bbe61ee15320533837b37268c16393d8d8b54@94.130.105.107:26656,c490aae48baa78ad1f05e58d165702c06cf61de0@138.68.159.60:26656,8286a9df6b3d9466f5a1f22283ddb574c28988b6@23.88.101.17:26656,39b18c2be0a3d3e286c1a0ec050bc3ec2c513da9@198.19.249.10:26656"
 
 # Path to address book
 addr_book_file = "config/addrbook.json"
