@@ -209,7 +209,8 @@ external_address = "testnet.val.poisonphang.com:443"
 seeds=""
 
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = "c51bbe61ee15320533837b37268c16393d8d8b54@94.130.105.107:26656,c490aae48baa78ad1f05e58d165702c06cf61de0@138.68.159.60:26656,8286a9df6b3d9466f5a1f22283ddb574c28988b6@23.88.101.17:26656,39b18c2be0a3d3e286c1a0ec050bc3ec2c513da9@198.19.249.10:26656"
+# persistent_peers = "39b18c2be0a3d3e286c1a0ec050bc3ec2c513da9@159.69.107.234:26656,4b81ca0a131659f316cfb8f7c755b2ada3e276ea@157.90.170.177:26656,c51bbe61ee15320533837b37268c16393d8d8b54@94.130.105.107:26656"
+persistent_peers = ""
 
 # Path to address book
 addr_book_file = "config/addrbook.json"
